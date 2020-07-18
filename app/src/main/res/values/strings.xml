@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Catho</string>
+    <string name="catho_toolbar_title">Olá, %s</string>
 </resources>
