@@ -10,6 +10,8 @@ class HomeViewModel(
     app: Application
 ) : BaseViewModel(app) {
 
-    private val _title = MutableLiveData<String>(app.getString(R.string.app_name))
-    val title: LiveData<String> get() = _title
+    private val _suggestionsSectionTitle = MutableLiveData<String>(
+        app.getString(R.string.catho_suggestions_section_title)
+    )
+    val suggestionsSectionTitle: LiveData<String> get() = _suggestionsSectionTitle
 }

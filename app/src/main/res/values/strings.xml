@@ -1,4 +1,18 @@
 <resources>
+    <!-- Application -->
     <string name="app_name">Catho</string>
+
+    <!-- Toolbar -->
     <string name="catho_toolbar_title">Olá, %s</string>
+
+    <!-- Home Fragment -->
+    <string name="catho_suggestions_section_title">Sugestões de vagas para você</string>
+    <string name="catho_recruiter_tips_section_title">#DicasDosRecrutadores</string>
+
+    <!-- Job item -->
+    <string name="catho_send_resume">Enviar currículo</string>
+
+    <!-- Recruiter tips item -->
+    <string name="catho_check_resume">Checar currículo</string>
+    <string name="catho_did_you_find_it_useful">Achou útil?</string>
 </resources>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        app:cardCornerRadius="@dimen/marginSmall"
+        app:cardElevation="0dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/marginNormal">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvRecruiterTipContent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLength="280"
+                android:text="Antes de enviar seu currículo, que tal checar qual a última vez que você o atualizou? Uma informação a mais pode ser o ponta-pé que falta rumo à sua próxima entrevista de emprego."
+                android:textAppearance="@style/TextAppearance.Catho"
+                android:textColor="@color/lightGray"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btCheckResume"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/marginNormal"
+                android:layout_marginEnd="@dimen/marginSmall"
+                android:background="@drawable/shape_rounded_white_blue_border_button"
+                android:foreground="?attr/selectableItemBackground"
+                android:text="@string/catho_check_resume"
+                android:textColor="@color/colorPrimaryDark"
+                app:layout_constraintEnd_toStartOf="@id/tvFindItUseful"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvRecruiterTipContent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvFindItUseful"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/marginSmall"
+                android:text="@string/catho_did_you_find_it_useful"
+                app:layout_constraintBottom_toBottomOf="@id/btCheckResume"
+                app:layout_constraintEnd_toStartOf="@id/ivLike"
+                app:layout_constraintTop_toTopOf="@id/btCheckResume" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivLike"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/marginSmall"
+                app:layout_constraintBottom_toBottomOf="@id/btCheckResume"
+                app:layout_constraintEnd_toStartOf="@id/ivDisike"
+                app:layout_constraintTop_toTopOf="@id/btCheckResume"
+                app:srcCompat="@drawable/ic_catho_thumb_up" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivDisike"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@id/btCheckResume"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/btCheckResume"
+                app:srcCompat="@drawable/ic_catho_thumb_down" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+</layout>
