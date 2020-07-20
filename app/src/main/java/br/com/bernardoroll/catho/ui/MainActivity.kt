@@ -1,7 +1,8 @@
-package br.com.bernardoroll.catho
+package br.com.bernardoroll.catho.ui
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+import br.com.bernardoroll.catho.R
 
 class MainActivity : AppCompatActivity() {
 

@@ -1,11 +1,39 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:statusBarColor">@color/colorPrimary</item>
     </style>
 
+    <style name="TextAppearance.Catho" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="TextAppearance.Catho.Orange" parent="TextAppearance.Catho">
+        <item name="android:textColor">@color/brightOrange</item>
+    </style>
+
+    <style name="TextAppearance.Catho.Organge.Bold" parent="TextAppearance.Catho.Orange">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="TextAppearance.Catho.ColorAccent" parent="TextAppearance.Catho">
+        <item name="android:textColor">@color/colorAccent</item>
+    </style>
+
+    <style name="TextAppearance.Catho.ColorAccent.Bold" parent="TextAppearance.Catho.ColorAccent">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="TextAppearance.Catho.Header" parent="TextAppearance.Catho">
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="TextAppearance.Catho.Header.White" parent="TextAppearance.Catho.Header">
+        <item name="android:textColor">@android:color/white</item>
+    </style>
 </resources>

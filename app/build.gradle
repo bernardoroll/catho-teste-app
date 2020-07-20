@@ -13,6 +13,7 @@ android {
         versionCode versions.versionCode
         versionName versions.versionName
 
+        vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -53,24 +54,50 @@ dependencies {
     // Kotlin
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${versions.kotlin}"
 
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${versions.kotlin}"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:${versions.coroutines}"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:${versions.coroutines}"
+
     // Androidx
     implementation "androidx.appcompat:appcompat:1.1.0"
     implementation "androidx.core:core-ktx:1.3.0"
     implementation "androidx.constraintlayout:constraintlayout:1.1.3"
 
-    // DI
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${versions.kotlin}"
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:${versions.coroutines}"
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:${versions.coroutines}"
-
-    // Gson
-    implementation "com.google.code.gson:gson:${versions.gson}"
-
     // Navigation
     implementation "androidx.navigation:navigation-fragment-ktx:${versions.navigation}"
     implementation "androidx.navigation:navigation-ui-ktx:${versions.navigation}"
 
+    // DI
+    implementation "org.koin:koin-core:${versions.koin}"
+    implementation "org.koin:koin-core-ext:${versions.koin}"
+    implementation "org.koin:koin-android:${versions.koin}"
+    implementation "org.koin:koin-androidx-scope:${versions.koin}"
+    implementation "org.koin:koin-androidx-viewmodel:${versions.koin}"
+
+    // Gson
+    implementation "com.google.code.gson:gson:${versions.gson}"
+
+    // Retrofit
+    implementation "com.squareup.retrofit2:retrofit:${versions.retrofit}"
+    implementation "com.squareup.retrofit2:converter-gson:${versions.retrofit}"
+    implementation "com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:${versions.coroutinesAdapter}"
+
+    // Circle Image View
+    implementation "com.mikhaellopez:circularimageview:${versions.circleImageView}"
+
+    // Groupie
+    implementation "com.xwray:groupie:${versions.groupie}"
+    implementation "com.xwray:groupie-databinding:${versions.groupie}"
+    implementation "com.xwray:groupie-kotlin-android-extensions:${versions.groupie}"
+
+    // OkHttp
+    implementation "com.squareup.okhttp3:okhttp:${versions.okhttp}"
+    implementation "com.squareup.okhttp3:logging-interceptor:${versions.okhttpLogging}"
+
+    // Unit tests
     testImplementation "junit:junit:${versions.junit}"
+    testImplementation "io.mockk:mockk:${versions.mockk}"
+    testImplementation "com.willowtreeapps.assertk:assertk-jvm:${versions.assertk}"
 
 //    androidTestImplementation "androidx.test.ext:junit:1.1.1"
 //    androidTestImplementation "androidx.test.espresso:espresso-core:3.2.0"
