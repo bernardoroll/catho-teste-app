@@ -11,6 +11,11 @@
 
     <!-- Job item -->
     <string name="catho_send_resume">Enviar currículo</string>
+    <string name="catho_resume_sent">CV enviado</string>
+    <string name="catho_range_not_informed">Faixa salarial não informada</string>
+    <string name="catho_company_not_informed">Nome da empresa não informado</string>
+    <string name="catho_job_name_not_informed">Nome da empresa não informado</string>
+    <string name="catho_locations_not_informed">Nome da empresa não informado</string>
 
     <!-- Recruiter tips item -->
     <string name="catho_check_resume">Checar currículo</string>

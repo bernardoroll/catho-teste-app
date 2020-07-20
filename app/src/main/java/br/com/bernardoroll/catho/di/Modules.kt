@@ -9,6 +9,7 @@ import br.com.bernardoroll.catho.domain.use_case.tip_action.PostTipActionUseCase
 import br.com.bernardoroll.catho.networking.service.CathoService
 import br.com.bernardoroll.catho.service.CathoRepositoryImpl
 import br.com.bernardoroll.catho.ui.home.HomeViewModel
+import br.com.bernardoroll.catho.ui.suggestion.SuggestionItemViewModel
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -30,6 +31,7 @@ object Modules {
 
     private val cathoModule: Module = module {
         viewModel { HomeViewModel(get(), get(), get(), get(), get(), get()) }
+        factory { params -> SuggestionItemViewModel(get(), params[0]) }
     }
 
     private val cathoUseCaseModule: Module = module {

@@ -70,11 +70,8 @@ class HomeFragment : BaseFragment<HomeViewModel>() {
     private fun createSuggestionItems(suggestions: List<SuggestionModel>): List<SuggestionItem> =
         suggestions.map { suggestion ->
             SuggestionItem(
-                jobAdTitle = suggestion.jobAdTile,
-                company = suggestion.company,
-                location = suggestion.locations?.joinToString(", "),
-                range = suggestion.salary.range ?: suggestion.salary.real,
-                date = suggestion.date
+                lifecycleOwner = viewLifecycleOwner,
+                model = suggestion
             )
         }
 }
