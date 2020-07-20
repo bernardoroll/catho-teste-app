@@ -60,10 +60,18 @@ class CathoRepositoryImpl(
                         )
                     )
                 } else {
-                    throw Throwable(response.message())
+                    Error(
+                        Throwable(
+                            response.message()
+                        )
+                    )
                 }
             } catch (error: Throwable) {
-                throw error
+                Error(
+                    Throwable(
+                        error.message
+                    )
+                )
             }
         }
 
@@ -91,10 +99,18 @@ class CathoRepositoryImpl(
                     }
                     Success(list)
                 } else {
-                    throw Throwable(response.message())
+                    Error(
+                        Throwable(
+                            response.message()
+                        )
+                    )
                 }
             } catch (error: Throwable) {
-                throw error
+                Error(
+                    Throwable(
+                        error.message
+                    )
+                )
             }
         }
 
@@ -119,10 +135,18 @@ class CathoRepositoryImpl(
                     }
                     Success(list)
                 } else {
-                    throw Throwable(response.message())
+                    Error(
+                        Throwable(
+                            response.message()
+                        )
+                    )
                 }
             } catch (error: Throwable) {
-                throw error
+                Error(
+                    Throwable(
+                        error.message
+                    )
+                )
             }
         }
 
@@ -152,10 +176,18 @@ class CathoRepositoryImpl(
                         )
                     )
                 } else {
-                    throw Throwable(response.message())
+                    Error(
+                        Throwable(
+                            response.message()
+                        )
+                    )
                 }
             } catch (error: Throwable) {
-                throw error
+                Error(
+                    Throwable(
+                        error.message
+                    )
+                )
             }
         }
 }
