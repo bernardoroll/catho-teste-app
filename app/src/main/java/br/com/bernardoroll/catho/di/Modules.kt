@@ -4,6 +4,8 @@ import br.com.bernardoroll.catho.domain.repository.CathoRepository
 import br.com.bernardoroll.catho.domain.use_case.api_keys.GetApiKeysUseCase
 import br.com.bernardoroll.catho.domain.use_case.auth.GetAuthUseCase
 import br.com.bernardoroll.catho.domain.use_case.suggestion.GetSuggestionUseCase
+import br.com.bernardoroll.catho.domain.use_case.tip.GetTipsUseCase
+import br.com.bernardoroll.catho.domain.use_case.tip_action.PostTipActionUseCase
 import br.com.bernardoroll.catho.networking.service.CathoService
 import br.com.bernardoroll.catho.service.CathoRepositoryImpl
 import br.com.bernardoroll.catho.ui.home.HomeViewModel
@@ -29,18 +31,19 @@ object Modules {
     }
 
     private val cathoModule: Module = module {
-        viewModel { HomeViewModel(get(), get(), get(), get()) }
+        viewModel { HomeViewModel(get(), get(), get(), get(), get(), get()) }
     }
 
     private val cathoUseCaseModule: Module = module {
         single { GetApiKeysUseCase(get()) }
         single { GetAuthUseCase(get()) }
         single { GetSuggestionUseCase(get()) }
+        single { GetTipsUseCase(get()) }
+        single { PostTipActionUseCase(get()) }
     }
 
     private val cathoServiceModule: Module = module {
         single<CathoService> { getServiceApi() }
-//        single<CathoNetworking> { CathoNetworkingImpl(get()) }
         single<CathoRepository> { CathoRepositoryImpl(get()) }
     }
 }

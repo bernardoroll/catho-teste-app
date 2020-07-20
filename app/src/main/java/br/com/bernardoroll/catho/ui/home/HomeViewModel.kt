@@ -2,26 +2,30 @@ package br.com.bernardoroll.catho.ui.home
 
 import android.app.Application
 import android.graphics.drawable.Drawable
-import android.util.Log
 import androidx.lifecycle.*
 import br.com.bernardoroll.catho.R
 import br.com.bernardoroll.catho.domain.model.ApiKeysModel
 import br.com.bernardoroll.catho.domain.model.AuthModel
 import br.com.bernardoroll.catho.domain.model.SuggestionModel
+import br.com.bernardoroll.catho.domain.model.TipModel
 import br.com.bernardoroll.catho.domain.use_case.api_keys.GetApiKeysUseCase
 import br.com.bernardoroll.catho.domain.use_case.auth.GetAuthUseCase
 import br.com.bernardoroll.catho.domain.use_case.suggestion.GetSuggestionUseCase
+import br.com.bernardoroll.catho.domain.use_case.tip.GetTipsUseCase
+import br.com.bernardoroll.catho.domain.use_case.tip_action.PostTipActionUseCase
 import br.com.bernardoroll.catho.extension.getFileNameFrom
 import br.com.bernardoroll.catho.extension.getFirstWord
 import br.com.bernardoroll.catho.ui.BaseViewModel
-import br.com.bernardoroll.catho.ui.suggestion.SuggestionItem
+import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 
 class HomeViewModel(
     private val app: Application,
     private val apiKeysUseCase: GetApiKeysUseCase,
     private val authUseCase: GetAuthUseCase,
-    private val suggestionUseCase: GetSuggestionUseCase
+    private val suggestionUseCase: GetSuggestionUseCase,
+    private val getTipsUseCase: GetTipsUseCase,
+    private val postTipActionUseCase: PostTipActionUseCase
 ) : BaseViewModel(app) {
 
     private val userIds = listOf(
@@ -46,10 +50,8 @@ class HomeViewModel(
     val photoPath: LiveData<Drawable> get() = _photoPath
 
     private val _authModelLiveData = MutableLiveData<AuthModel>()
-    val authModelLiveData: LiveData<AuthModel> get() = _authModelLiveData
 
     private val _apiKeysLiveData = MutableLiveData<ApiKeysModel>()
-    val apiKeysLiveData: LiveData<ApiKeysModel> get() = _apiKeysLiveData
 
     private val _errorLiveData = MutableLiveData<Throwable>()
     val errorLiveData: LiveData<Throwable> get() = _errorLiveData
@@ -57,9 +59,14 @@ class HomeViewModel(
     private val _suggestionItems = MutableLiveData<List<SuggestionModel>>()
     val suggestionItems: LiveData<List<SuggestionModel>> get() = _suggestionItems
 
+    private val _tipsItems = MutableLiveData<List<TipModel>>()
+    val tipsItems: LiveData<List<TipModel>> get() = _tipsItems
+
     private lateinit var authKey: String
     private lateinit var suggestionKey: String
+    private lateinit var tipsKey: String
     private lateinit var token: String
+    private lateinit var surveyKey: String
 
     @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
     fun onCreate() {
@@ -72,18 +79,50 @@ class HomeViewModel(
         }
     }
 
+    private fun handleApiKeysError(throwable: Throwable) {
+        _errorLiveData.value = throwable
+    }
+
     private fun handleApiKeysSuccess(model: ApiKeysModel) {
         _apiKeysLiveData.value = model
-        authKey = model.auth ?: return
-        suggestionKey = model.suggestion ?: return
+        if (verifyIfAnyKeyIsNull(model)) return
         viewModelScope.launch {
-            authUseCase.run(
-                apiKey = authKey,
-                userId = userIds.random()
-            ).either(
-                ::handleGetAuthError,
-                ::handleGetAuthSuccess
-            )
+            val authCoroutine = async {
+                authUseCase.run(
+                    apiKey = authKey,
+                    userId = userIds.random()
+                ).either(
+                    ::handleGetAuthError,
+                    ::handleGetAuthSuccess
+                )
+            }
+            async {
+                getTipsUseCase.run(
+                    apiKey = tipsKey
+                ).either(
+                    ::handleTipsError,
+                    ::handleTipsSuccess
+                )
+            }.await()
+            authCoroutine.await()
+        }
+    }
+
+    private fun verifyIfAnyKeyIsNull(model: ApiKeysModel): Boolean {
+        authKey = model.auth ?: return true
+        suggestionKey = model.suggestion ?: return true
+        tipsKey = model.tips ?: return true
+        surveyKey = model.survey ?: return true
+        return false
+    }
+
+    private fun handleTipsError(error: Throwable) {
+        _errorLiveData.value = error
+    }
+
+    private fun handleTipsSuccess(models: List<TipModel>?) {
+        models?.let { items ->
+            _tipsItems.value = items
         }
     }
 
@@ -114,16 +153,12 @@ class HomeViewModel(
     }
 
     private fun handleSuggestionError(error: Throwable) {
-
+        _errorLiveData.value = error
     }
 
     private fun handleSuggestionSuccess(models: List<SuggestionModel>?) {
         models?.let { items ->
             _suggestionItems.value = items
         }
-    }
-
-    private fun handleApiKeysError(throwable: Throwable) {
-        _errorLiveData.value = throwable
     }
 }

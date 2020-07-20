@@ -57,64 +57,79 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
         </com.google.android.material.appbar.AppBarLayout>
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tvSuggestionsSectionTitle"
+        <ScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/marginNormal"
-            android:layout_marginTop="@dimen/marginNormal"
-            android:text="@{viewModel.suggestionsSectionTitle}"
-            android:textAppearance="@style/TextAppearance.Catho.Header.White"
-            android:textColor="@android:color/white"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/ablHome"
-            tools:text="Sugestões de vagas para você" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvJobs"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/marginNormal"
-            android:layout_marginTop="@dimen/marginNormal"
-            android:orientation="horizontal"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvSuggestionsSectionTitle"
-            tools:listitem="@layout/item_suggestion" />
+            app:layout_constraintTop_toBottomOf="@id/ablHome">
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tvRecruiterTipsSectionTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/marginNormal"
-            android:layout_marginTop="@dimen/marginNormal"
-            android:text="@{viewModel.recruiterTipsSectionTitle}"
-            android:textAppearance="@style/TextAppearance.Catho.Header.White"
-            android:textColor="@android:color/white"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/rvJobs"
-            tools:text="Sugestões de vagas para você" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/marginNormal"
-            app:layout_constraintBottom_toBottomOf="@id/tvRecruiterTipsSectionTitle"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1"
-            app:layout_constraintStart_toEndOf="@id/tvRecruiterTipsSectionTitle"
-            app:layout_constraintTop_toTopOf="@id/tvRecruiterTipsSectionTitle"
-            app:srcCompat="@drawable/ic_catho_expand_less" />
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvSuggestionsSectionTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/marginNormal"
+                    android:layout_marginTop="@dimen/marginNormal"
+                    android:text="@{viewModel.suggestionsSectionTitle}"
+                    android:textAppearance="@style/TextAppearance.Catho.Header.White"
+                    android:textColor="@android:color/white"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="Sugestões de vagas para você" />
 
-        <include
-            android:id="@+id/recruiterTipsCards"
-            layout="@layout/item_recruiter_tip"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/marginNormal"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvRecruiterTipsSectionTitle" />
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvJobs"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/marginNormal"
+                    android:layout_marginBottom="@dimen/marginNormal"
+                    android:orientation="horizontal"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tvSuggestionsSectionTitle"
+                    tools:listitem="@layout/item_suggestion" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvRecruiterTipsSectionTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/marginNormal"
+                    android:layout_marginTop="@dimen/marginNormal"
+                    android:text="@{viewModel.recruiterTipsSectionTitle}"
+                    android:textAppearance="@style/TextAppearance.Catho.Header.White"
+                    android:textColor="@android:color/white"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/rvJobs"
+                    tools:text="Sugestões de vagas para você" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/marginNormal"
+                    app:layout_constraintBottom_toBottomOf="@id/tvRecruiterTipsSectionTitle"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1"
+                    app:layout_constraintStart_toEndOf="@id/tvRecruiterTipsSectionTitle"
+                    app:layout_constraintTop_toTopOf="@id/tvRecruiterTipsSectionTitle"
+                    app:srcCompat="@drawable/ic_catho_expand_less" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvRecruiterTips"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/marginNormal"
+                    android:orientation="horizontal"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tvRecruiterTipsSectionTitle"
+                    tools:listitem="@layout/item_recruiter_tip" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

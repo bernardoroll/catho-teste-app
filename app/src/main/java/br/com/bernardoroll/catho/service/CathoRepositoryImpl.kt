@@ -1,9 +1,6 @@
 package br.com.bernardoroll.catho.service
 
-import br.com.bernardoroll.catho.domain.model.ApiKeysModel
-import br.com.bernardoroll.catho.domain.model.AuthModel
-import br.com.bernardoroll.catho.domain.model.SalaryModel
-import br.com.bernardoroll.catho.domain.model.SuggestionModel
+import br.com.bernardoroll.catho.domain.model.*
 import br.com.bernardoroll.catho.domain.repository.CathoRepository
 import br.com.bernardoroll.catho.domain.use_case.Either
 import br.com.bernardoroll.catho.domain.use_case.Either.Success
@@ -85,6 +82,67 @@ class CathoRepositoryImpl(
                         )
                     }
                     Success(list)
+                } else {
+                    throw Throwable(response.message())
+                }
+            } catch (error: Throwable) {
+                throw error
+            }
+        }
+
+    @Throws(Throwable::class)
+    override suspend fun getTips(
+        apiKey: String
+    ): Either<Throwable, List<TipModel>?> =
+        withContext(Dispatchers.IO) {
+            try {
+                val response = cathoService.getTips(apiKey)
+                if (response.isSuccessful) {
+                    val list = response.body()?.map {
+                        TipModel(
+                            id = it.id,
+                            description = it.description,
+                            button = ButtonModel(
+                                show = it.button?.show,
+                                label = it.button?.label,
+                                url = it.button?.url
+                            )
+                        )
+                    }
+                    Success(list)
+                } else {
+                    throw Throwable(response.message())
+                }
+            } catch (error: Throwable) {
+                throw error
+            }
+        }
+
+    @Throws(Throwable::class)
+    override suspend fun postTipAction(
+        apiKey: String,
+        token: String,
+        tipId: String,
+        action: String
+    ): Either<Throwable, TipActionModel> =
+        withContext(Dispatchers.IO) {
+            try {
+                val response = cathoService.postTipAction(
+                    apiKey,
+                    token,
+                    tipId,
+                    action
+                )
+                if (response.isSuccessful) {
+                    Success(
+                        TipActionModel(
+                            id = response.body()?.id,
+                            createdAt = response.body()?.createdAt,
+                            tipId =  response.body()?.tipId,
+                            action = response.body()?.action,
+                            message = response.body()?.message
+                        )
+                    )
                 } else {
                     throw Throwable(response.message())
                 }

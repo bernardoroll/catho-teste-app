@@ -1,11 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="item"
+            type="br.com.bernardoroll.catho.ui.tip.TipItem" />
+    </data>
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@android:color/white"
+        android:layout_marginStart="@dimen/marginNormal"
+        android:layout_marginEnd="@dimen/marginNormal"
         app:cardCornerRadius="@dimen/marginSmall"
         app:cardElevation="0dp">
 
@@ -20,7 +29,8 @@
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
                 android:maxLength="280"
-                android:text="Antes de enviar seu currículo, que tal checar qual a última vez que você o atualizou? Uma informação a mais pode ser o ponta-pé que falta rumo à sua próxima entrevista de emprego."
+                android:text="@{item.description}"
+                tools:text="Antes de enviar seu currículo, que tal checar qual a última vez que você o atualizou? Uma informação a mais pode ser o ponta-pé que falta rumo à sua próxima entrevista de emprego."
                 android:textAppearance="@style/TextAppearance.Catho"
                 android:textColor="@color/lightGray"
                 app:layout_constraintStart_toStartOf="parent"
@@ -34,7 +44,8 @@
                 android:layout_marginEnd="@dimen/marginSmall"
                 android:background="@drawable/shape_rounded_white_blue_border_button"
                 android:foreground="?attr/selectableItemBackground"
-                android:text="@string/catho_check_resume"
+                android:text="@{item.buttonLabel}"
+                tools:text="@string/catho_check_resume"
                 android:textColor="@color/colorPrimaryDark"
                 app:layout_constraintEnd_toStartOf="@id/tvFindItUseful"
                 app:layout_constraintStart_toStartOf="parent"

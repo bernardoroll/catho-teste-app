@@ -15,4 +15,7 @@
     <!-- Recruiter tips item -->
     <string name="catho_check_resume">Checar currículo</string>
     <string name="catho_did_you_find_it_useful">Achou útil?</string>
+
+    <!-- Default error -->
+    <string name="catho_default_error_message">Desculpe-nos, aconteceu um erro por aqui! Já estamos trabalhando para resolver!</string>
 </resources>
