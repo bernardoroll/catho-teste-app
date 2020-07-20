@@ -118,17 +118,29 @@
                     app:layout_constraintTop_toTopOf="@id/tvRecruiterTipsSectionTitle"
                     app:srcCompat="@drawable/ic_catho_expand_less" />
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rvRecruiterTips"
+                <include
+                    android:id="@+id/iRecruiterTip"
+                    layout="@layout/include_recruiter_tip"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/marginNormal"
-                    android:orientation="horizontal"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_margin="@dimen/marginNormal"
                     app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tvRecruiterTipsSectionTitle"
-                    tools:listitem="@layout/item_recruiter_tip" />
+                    app:model="@{viewModel.tipModel}"
+                    app:viewModel="@{viewModel}"/>
+
+<!--                <androidx.recyclerview.widget.RecyclerView-->
+<!--                    android:id="@+id/rvRecruiterTips"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginTop="@dimen/marginNormal"-->
+<!--                    android:orientation="horizontal"-->
+<!--                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"-->
+<!--                    app:layout_constraintEnd_toEndOf="parent"-->
+<!--                    app:layout_constraintStart_toStartOf="parent"-->
+<!--                    app:layout_constraintTop_toBottomOf="@id/tvRecruiterTipsSectionTitle"-->
+<!--                    tools:listitem="@layout/item_recruiter_tip" />-->
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>
     </androidx.constraintlayout.widget.ConstraintLayout>

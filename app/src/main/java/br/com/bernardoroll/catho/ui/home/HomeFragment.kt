@@ -8,10 +8,8 @@ import androidx.lifecycle.Observer
 import br.com.bernardoroll.catho.R
 import br.com.bernardoroll.catho.databinding.FragmentHomeBinding
 import br.com.bernardoroll.catho.domain.model.SuggestionModel
-import br.com.bernardoroll.catho.domain.model.TipModel
 import br.com.bernardoroll.catho.ui.BaseFragment
 import br.com.bernardoroll.catho.ui.suggestion.SuggestionItem
-import br.com.bernardoroll.catho.ui.tip.TipItem
 import com.google.android.material.snackbar.Snackbar
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.ViewHolder
@@ -44,12 +42,6 @@ class HomeFragment : BaseFragment<HomeViewModel>() {
             groupAdapter.addAll(items)
             rvJobs.adapter = groupAdapter
         })
-        viewModel.tipsItems.observe(viewLifecycleOwner, Observer {
-            val groupAdapter = GroupAdapter<ViewHolder>()
-            val items = createTipItems(it)
-            groupAdapter.addAll(items)
-            rvRecruiterTips.adapter = groupAdapter
-        })
         viewModel.errorLiveData.observe(viewLifecycleOwner, Observer {
             view?.rootView?.let { root ->
                 val message = it.message ?: getString(R.string.catho_default_error_message)
@@ -58,23 +50,11 @@ class HomeFragment : BaseFragment<HomeViewModel>() {
         })
     }
 
-    private fun createTipItems(tips: List<TipModel>): List<TipItem> = tips.map { tip ->
-        TipItem(
-            description = tip.description,
-            showButton = tip.button?.show,
-            buttonLabel = tip.button?.label,
-            url = tip.button?.url
-        )
-    }
-
     private fun createSuggestionItems(suggestions: List<SuggestionModel>): List<SuggestionItem> =
         suggestions.map { suggestion ->
             SuggestionItem(
-                jobAdTitle = suggestion.jobAdTile,
-                company = suggestion.company,
-                location = suggestion.locations?.joinToString(", "),
-                range = suggestion.salary.range ?: suggestion.salary.real,
-                date = suggestion.date
+                lifecycleOwner = viewLifecycleOwner,
+                model = suggestion
             )
         }
 }

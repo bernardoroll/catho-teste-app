@@ -6,6 +6,10 @@
     <data>
 
         <variable
+            name="viewModel"
+            type="br.com.bernardoroll.catho.ui.suggestion.SuggestionItemViewModel" />
+
+        <variable
             name="item"
             type="br.com.bernardoroll.catho.ui.suggestion.SuggestionItem" />
     </data>
@@ -31,7 +35,7 @@
                 android:layout_marginEnd="@dimen/marginSmall"
                 android:ellipsize="end"
                 android:singleLine="true"
-                android:text="@{item.jobAdTitle}"
+                android:text="@{viewModel.jobAdTitle}"
                 android:textAppearance="@style/TextAppearance.Catho.ColorAccent.Bold"
                 app:layout_constraintEnd_toStartOf="@id/tvDate"
                 app:layout_constraintStart_toStartOf="parent"
@@ -42,7 +46,7 @@
                 android:id="@+id/tvDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{item.date}"
+                android:text="@{viewModel.date}"
                 android:textAppearance="@style/TextAppearance.Catho.Organge.Bold"
                 android:textColor="@color/brightOrange"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -59,7 +63,7 @@
                 android:layout_marginEnd="@dimen/marginSmall"
                 android:ellipsize="end"
                 android:singleLine="true"
-                android:text="@{item.company}"
+                android:text="@{viewModel.company}"
                 android:textColor="@color/lightGray"
                 app:layout_constraintEnd_toStartOf="@id/tvDate"
                 app:layout_constraintStart_toStartOf="parent"
@@ -74,7 +78,7 @@
                 android:layout_marginEnd="@dimen/marginSmall"
                 android:ellipsize="end"
                 android:singleLine="true"
-                android:text="@{item.location}"
+                android:text="@{viewModel.locations}"
                 android:textColor="@color/lightGray"
                 app:layout_constraintEnd_toStartOf="@id/tvDate"
                 app:layout_constraintStart_toStartOf="parent"
@@ -88,7 +92,7 @@
                 android:layout_marginTop="@dimen/marginExtraSmall"
                 android:ellipsize="end"
                 android:singleLine="true"
-                android:text="@{item.range}"
+                android:text="@{viewModel.rangeOrSalary}"
                 android:textColor="@color/gray"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toStartOf="@id/tvDate"
@@ -103,11 +107,13 @@
                 android:layout_marginTop="@dimen/marginNormal"
                 android:background="@drawable/shape_rounded_solid_blue_button"
                 android:foreground="?attr/selectableItemBackground"
-                android:text="@string/catho_send_resume"
+                android:text="@{viewModel.sendResumeButtonLabel}"
                 android:textColor="@android:color/white"
+                android:onClick="@{_ -> viewModel.sendResumeClick()}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tvJobValues" />
+                app:layout_constraintTop_toBottomOf="@id/tvJobValues"
+                tools:text="Enviar currículo"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>
 </layout>
