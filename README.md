@@ -15,3 +15,4 @@ O teste ainda está em desenvolvimento.
 **Possíveis Melhorias**
 - Criar uma camada de networking e removê-la do repositório
 - Tratar erros para cada seção do app separadamente (nome do usuário na toolbar, vagas e dicas)
+- Adicionar shimmers independentes para cada seção do app
