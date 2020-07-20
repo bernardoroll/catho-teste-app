@@ -3,6 +3,7 @@ package br.com.bernardoroll.catho.service
 import br.com.bernardoroll.catho.domain.model.*
 import br.com.bernardoroll.catho.domain.repository.CathoRepository
 import br.com.bernardoroll.catho.domain.use_case.Either
+import br.com.bernardoroll.catho.domain.use_case.Either.Error
 import br.com.bernardoroll.catho.domain.use_case.Either.Success
 import br.com.bernardoroll.catho.networking.service.CathoService
 import kotlinx.coroutines.Dispatchers
@@ -12,7 +13,6 @@ class CathoRepositoryImpl(
     private val cathoService: CathoService
 ) : CathoRepository {
 
-    @Throws(Throwable::class)
     override suspend fun getApiKeys(): Either<Throwable, ApiKeysModel> =
         withContext(Dispatchers.IO) {
             try {
@@ -27,10 +27,18 @@ class CathoRepositoryImpl(
                         )
                     )
                 } else {
-                    throw Throwable(response.message())
+                    Error(
+                        Throwable(
+                            response.message()
+                        )
+                    )
                 }
-            } catch(error: Throwable) {
-                throw error
+            } catch (error: Throwable) {
+                Error(
+                    Throwable(
+                        error.message
+                    )
+                )
             }
         }
 
@@ -54,7 +62,7 @@ class CathoRepositoryImpl(
                 } else {
                     throw Throwable(response.message())
                 }
-            } catch(error: Throwable) {
+            } catch (error: Throwable) {
                 throw error
             }
         }
@@ -138,7 +146,7 @@ class CathoRepositoryImpl(
                         TipActionModel(
                             id = response.body()?.id,
                             createdAt = response.body()?.createdAt,
-                            tipId =  response.body()?.tipId,
+                            tipId = response.body()?.tipId,
                             action = response.body()?.action,
                             message = response.body()?.message
                         )

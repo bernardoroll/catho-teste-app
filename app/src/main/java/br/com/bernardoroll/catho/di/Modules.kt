@@ -10,9 +10,7 @@ import br.com.bernardoroll.catho.networking.service.CathoService
 import br.com.bernardoroll.catho.service.CathoRepositoryImpl
 import br.com.bernardoroll.catho.ui.home.HomeViewModel
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
-import okhttp3.Interceptor
 import okhttp3.OkHttpClient
-import okhttp3.Response
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.module.Module
@@ -65,10 +63,3 @@ private fun provideOkHttp() =
             HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
         )
         .build()
-
-private class CathoInterceptor : Interceptor {
-    override fun intercept(chain: Interceptor.Chain): Response {
-        val req = chain.request()
-        return chain.proceed(req)
-    }
-}

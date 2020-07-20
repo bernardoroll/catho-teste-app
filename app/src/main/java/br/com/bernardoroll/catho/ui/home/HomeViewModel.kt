@@ -79,8 +79,8 @@ class HomeViewModel(
         }
     }
 
-    private fun handleApiKeysError(throwable: Throwable) {
-        _errorLiveData.value = throwable
+    private fun handleApiKeysError(error: Throwable) {
+        _errorLiveData.value = error
     }
 
     private fun handleApiKeysSuccess(model: ApiKeysModel) {
