@@ -30,7 +30,7 @@ class GetTipsUseCaseTest : BaseTest() {
     fun `run - when get tips successfully, then return Success`() = runBlocking {
         coEvery { cathoRepository.getTips(any()) } returns Success(mockk())
 
-        val either = cathoRepository.getTips(
+        val either = useCase.run(
             apiKey = API_KEY
         )
 
@@ -44,7 +44,7 @@ class GetTipsUseCaseTest : BaseTest() {
     fun `run - when get tips fails, then return Error`() = runBlocking {
         coEvery { cathoRepository.getTips(any()) } returns Error(mockk())
 
-        val either = cathoRepository.getTips(
+        val either = useCase.run(
             apiKey = API_KEY
         )
 

@@ -32,7 +32,7 @@ class PostTipActionUseCaseTest : BaseTest() {
             cathoRepository.postTipAction(any(), any(), any(), any())
         } returns Success(mockk())
 
-        val either = cathoRepository.postTipAction(
+        val either = useCase.run(
             apiKey = API_KEY,
             token = TOKEN,
             tipId = TIP_ID,
@@ -51,7 +51,7 @@ class PostTipActionUseCaseTest : BaseTest() {
             cathoRepository.postTipAction(any(), any(), any(), any())
         } returns Error(mockk())
 
-        val either = cathoRepository.postTipAction(
+        val either = useCase.run(
             apiKey = API_KEY,
             token = TOKEN,
             tipId = TIP_ID,
