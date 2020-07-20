@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="item"
             type="br.com.bernardoroll.catho.ui.tip.TipItem" />
@@ -12,9 +13,9 @@
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@android:color/white"
         android:layout_marginStart="@dimen/marginNormal"
         android:layout_marginEnd="@dimen/marginNormal"
+        android:background="@android:color/white"
         app:cardCornerRadius="@dimen/marginSmall"
         app:cardElevation="0dp">
 
@@ -30,11 +31,11 @@
                 android:ellipsize="end"
                 android:maxLength="280"
                 android:text="@{item.description}"
-                tools:text="Antes de enviar seu currículo, que tal checar qual a última vez que você o atualizou? Uma informação a mais pode ser o ponta-pé que falta rumo à sua próxima entrevista de emprego."
                 android:textAppearance="@style/TextAppearance.Catho"
                 android:textColor="@color/lightGray"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Antes de enviar seu currículo, que tal checar qual a última vez que você o atualizou? Uma informação a mais pode ser o ponta-pé que falta rumo à sua próxima entrevista de emprego." />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btCheckResume"
@@ -45,11 +46,12 @@
                 android:background="@drawable/shape_rounded_white_blue_border_button"
                 android:foreground="?attr/selectableItemBackground"
                 android:text="@{item.buttonLabel}"
-                tools:text="@string/catho_check_resume"
                 android:textColor="@color/colorPrimaryDark"
                 app:layout_constraintEnd_toStartOf="@id/tvFindItUseful"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tvRecruiterTipContent" />
+                app:layout_constraintTop_toBottomOf="@id/tvRecruiterTipContent"
+                app:present="@{item.showButton}"
+                tools:text="@string/catho_check_resume" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvFindItUseful"
