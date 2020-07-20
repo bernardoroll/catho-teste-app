@@ -14,6 +14,7 @@ import br.com.bernardoroll.catho.domain.use_case.suggestion.GetSuggestionUseCase
 import br.com.bernardoroll.catho.extension.getFileNameFrom
 import br.com.bernardoroll.catho.extension.getFirstWord
 import br.com.bernardoroll.catho.ui.BaseViewModel
+import br.com.bernardoroll.catho.ui.suggestion.SuggestionItem
 import kotlinx.coroutines.launch
 
 class HomeViewModel(
@@ -52,6 +53,9 @@ class HomeViewModel(
 
     private val _errorLiveData = MutableLiveData<Throwable>()
     val errorLiveData: LiveData<Throwable> get() = _errorLiveData
+
+    private val _suggestionItems = MutableLiveData<List<SuggestionModel>>()
+    val suggestionItems: LiveData<List<SuggestionModel>> get() = _suggestionItems
 
     private lateinit var authKey: String
     private lateinit var suggestionKey: String
@@ -114,7 +118,9 @@ class HomeViewModel(
     }
 
     private fun handleSuggestionSuccess(models: List<SuggestionModel>?) {
-        Log.d("sugestões = ", "sugestões = ${models.toString()}")
+        models?.let { items ->
+            _suggestionItems.value = items
+        }
     }
 
     private fun handleApiKeysError(throwable: Throwable) {

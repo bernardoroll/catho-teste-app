@@ -3,10 +3,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+
+        <variable
+            name="item"
+            type="br.com.bernardoroll.catho.ui.suggestion.SuggestionItem" />
+    </data>
+
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@android:color/white"
+        android:layout_marginEnd="@dimen/marginNormal"
+        android:layout_marginStart="@dimen/marginNormal"
         app:cardCornerRadius="@dimen/marginSmall"
         app:cardElevation="0dp">
 
@@ -22,23 +31,25 @@
                 android:layout_marginEnd="@dimen/marginSmall"
                 android:ellipsize="end"
                 android:singleLine="true"
-                android:text="Analista de telemarketing e assistente de user experience"
+                android:text="@{item.jobAdTitle}"
                 android:textAppearance="@style/TextAppearance.Catho.ColorAccent.Bold"
                 app:layout_constraintEnd_toStartOf="@id/tvDate"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Nome da vaga" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="hoje"
+                android:text="@{item.date}"
                 android:textAppearance="@style/TextAppearance.Catho.Organge.Bold"
                 android:textColor="@color/brightOrange"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1"
                 app:layout_constraintStart_toEndOf="@id/tvJobTitle"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="hoje" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvCompanyName"
@@ -48,11 +59,12 @@
                 android:layout_marginEnd="@dimen/marginSmall"
                 android:ellipsize="end"
                 android:singleLine="true"
-                android:text="Empresa brasileira WESGERBER Transporte de mercadorias"
+                android:text="@{item.company}"
                 android:textColor="@color/lightGray"
                 app:layout_constraintEnd_toStartOf="@id/tvDate"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tvJobTitle" />
+                app:layout_constraintTop_toBottomOf="@id/tvJobTitle"
+                tools:text="Empresa brasileira WESGERBER Transporte de mercadorias" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvJobDescription"
@@ -62,11 +74,12 @@
                 android:layout_marginEnd="@dimen/marginSmall"
                 android:ellipsize="end"
                 android:singleLine="true"
-                android:text="3 vagas - São Paulo + 3 cidades"
+                android:text="@{item.location}"
                 android:textColor="@color/lightGray"
                 app:layout_constraintEnd_toStartOf="@id/tvDate"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tvCompanyName" />
+                app:layout_constraintTop_toBottomOf="@id/tvCompanyName"
+                tools:text="3 vagas - São Paulo + 3 cidades" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvJobValues"
@@ -75,12 +88,13 @@
                 android:layout_marginTop="@dimen/marginExtraSmall"
                 android:ellipsize="end"
                 android:singleLine="true"
-                android:text="R$ 2.000,00 a R$ 3.000,00"
+                android:text="@{item.range}"
                 android:textColor="@color/gray"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toStartOf="@id/tvDate"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tvJobDescription" />
+                app:layout_constraintTop_toBottomOf="@id/tvJobDescription"
+                tools:text="R$ 2.000,00 a R$ 3.000,00" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btSendResume"
