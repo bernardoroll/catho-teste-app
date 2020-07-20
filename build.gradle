@@ -17,6 +17,7 @@ buildscript {
             'okhttpLogging' : '3.10.0',
             'gson' : '2.8.6',
             'mockk' : '1.9',
+            'assertk' : '0.16',
             'navigation' : '2.2.2',
             'glide' : '4.11.0',
             'circleImageView' : '4.2.0',
