@@ -6,8 +6,12 @@
     <data>
 
         <variable
-            name="item"
-            type="br.com.bernardoroll.catho.ui.tip.TipItem" />
+            name="viewModel"
+            type="br.com.bernardoroll.catho.ui.home.HomeViewModel" />
+
+        <variable
+            name="model"
+            type="br.com.bernardoroll.catho.domain.model.TipModel" />
     </data>
 
     <com.google.android.material.card.MaterialCardView
@@ -30,7 +34,7 @@
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
                 android:maxLength="280"
-                android:text="@{item.description}"
+                android:text="@{model.description}"
                 android:textAppearance="@style/TextAppearance.Catho"
                 android:textColor="@color/lightGray"
                 app:layout_constraintStart_toStartOf="parent"
@@ -45,12 +49,12 @@
                 android:layout_marginEnd="@dimen/marginSmall"
                 android:background="@drawable/shape_rounded_white_blue_border_button"
                 android:foreground="?attr/selectableItemBackground"
-                android:text="@{item.buttonLabel}"
+                android:text="@{model.button.label}"
                 android:textColor="@color/colorPrimaryDark"
                 app:layout_constraintEnd_toStartOf="@id/tvFindItUseful"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tvRecruiterTipContent"
-                app:present="@{item.showButton}"
+                app:present="@{model.button.show}"
                 tools:text="@string/catho_check_resume" />
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -68,19 +72,24 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/marginSmall"
+                android:backgroundTint="@android:color/black"
+                android:onClick="@{_ -> viewModel.likeTipClick(model)}"
                 app:layout_constraintBottom_toBottomOf="@id/btCheckResume"
                 app:layout_constraintEnd_toStartOf="@id/ivDisike"
                 app:layout_constraintTop_toTopOf="@id/btCheckResume"
-                app:srcCompat="@drawable/ic_catho_thumb_up" />
+                app:srcCompat="@drawable/ic_catho_thumb_up"
+                app:srcTint="@{viewModel.postTipLikeColor}" />
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/ivDisike"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:onClick="@{_ -> viewModel.dislikeTipClick(model)}"
                 app:layout_constraintBottom_toBottomOf="@id/btCheckResume"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@id/btCheckResume"
-                app:srcCompat="@drawable/ic_catho_thumb_down" />
+                app:srcCompat="@drawable/ic_catho_thumb_down"
+                app:srcTint="@{viewModel.postTipDislikeColor}" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>
 </layout>

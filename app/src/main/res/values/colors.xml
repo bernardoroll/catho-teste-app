@@ -7,4 +7,6 @@
     <color name="brightOrange">#FDAE33</color>
     <color name="lightGray">#859097</color>
     <color name="gray">#68767d</color>
+    <color name="red">#BA2530</color>
+    <color name="gray500">#647C8A</color>
 </resources>

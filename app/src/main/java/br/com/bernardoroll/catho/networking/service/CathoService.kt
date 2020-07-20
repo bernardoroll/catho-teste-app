@@ -29,7 +29,7 @@ interface CathoService {
         @Header("x-api-key") apiKey: String
     ): Response<List<TipResponse>>
 
-    @POST("/tips/{tipId}/{action}")
+    @POST("/survey/tips/{tipId}/{action}")
     suspend fun postTipAction(
         @Header("x-api-key") apiKey: String,
         @Header("Authorization") token: String,

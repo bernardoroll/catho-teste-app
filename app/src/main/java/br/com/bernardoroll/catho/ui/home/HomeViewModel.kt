@@ -2,12 +2,10 @@ package br.com.bernardoroll.catho.ui.home
 
 import android.app.Application
 import android.graphics.drawable.Drawable
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.*
 import br.com.bernardoroll.catho.R
-import br.com.bernardoroll.catho.domain.model.ApiKeysModel
-import br.com.bernardoroll.catho.domain.model.AuthModel
-import br.com.bernardoroll.catho.domain.model.SuggestionModel
-import br.com.bernardoroll.catho.domain.model.TipModel
+import br.com.bernardoroll.catho.domain.model.*
 import br.com.bernardoroll.catho.domain.use_case.api_keys.GetApiKeysUseCase
 import br.com.bernardoroll.catho.domain.use_case.auth.GetAuthUseCase
 import br.com.bernardoroll.catho.domain.use_case.suggestion.GetSuggestionUseCase
@@ -59,8 +57,18 @@ class HomeViewModel(
     private val _suggestionItems = MutableLiveData<List<SuggestionModel>>()
     val suggestionItems: LiveData<List<SuggestionModel>> get() = _suggestionItems
 
-    private val _tipsItems = MutableLiveData<List<TipModel>>()
-    val tipsItems: LiveData<List<TipModel>> get() = _tipsItems
+    private val _tipModel = MutableLiveData<TipModel>()
+    val tipModel: LiveData<TipModel> get() = _tipModel
+
+    private val _postTipLikeColor = MutableLiveData<Int>(
+        app.getColor(R.color.gray500)
+    )
+    val postTipLikeColor: LiveData<Int> get() = _postTipLikeColor
+
+    private val _postTipDislikeColor = MutableLiveData<Int>(
+        app.getColor(R.color.gray500)
+    )
+    val postTipDislikeColor: LiveData<Int> get() = _postTipDislikeColor
 
     private lateinit var authKey: String
     private lateinit var suggestionKey: String
@@ -77,6 +85,53 @@ class HomeViewModel(
             )
 
         }
+    }
+
+    fun likeTipClick(model: TipModel) {
+        model.id?.let { tipId ->
+            viewModelScope.launch {
+                postTipActionUseCase.run(
+                    apiKey = surveyKey,
+                    token = token,
+                    tipId = tipId,
+                    action = ActionType.LIKE.getValue()
+                ).either(
+                    ::handlePostActionError,
+                    ::handleLikeSuccess
+                )
+            }
+        }
+    }
+
+    fun dislikeTipClick(model: TipModel) {
+        model.id?.let { tipId ->
+            viewModelScope.launch {
+                postTipActionUseCase.run(
+                    apiKey = surveyKey,
+                    token = token,
+                    tipId = tipId,
+                    action = ActionType.DISLIKE.getValue()
+                ).either(
+                    ::handlePostActionError,
+                    ::handleDislikeSuccess
+                )
+            }
+        }
+    }
+
+    private fun handlePostActionError(error: Throwable) {
+        _errorLiveData.value = error
+    }
+
+    private fun handleLikeSuccess(model: TipActionModel) {
+        _postTipLikeColor.value =
+            ContextCompat.getColor(app.applicationContext, R.color.colorPrimaryDark)
+        _postTipDislikeColor.value = ContextCompat.getColor(app.applicationContext, R.color.gray500)
+    }
+
+    private fun handleDislikeSuccess(model: TipActionModel) {
+        _postTipDislikeColor.value = ContextCompat.getColor(app.applicationContext, R.color.red)
+        _postTipLikeColor.value = ContextCompat.getColor(app.applicationContext, R.color.gray500)
     }
 
     private fun handleApiKeysError(error: Throwable) {
@@ -121,8 +176,8 @@ class HomeViewModel(
     }
 
     private fun handleTipsSuccess(models: List<TipModel>?) {
-        models?.let { items ->
-            _tipsItems.value = items
+        models?.let {
+            _tipModel.value = it.random()
         }
     }
 
