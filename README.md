@@ -1,7 +1,7 @@
 # catho-teste-app
 Teste Catho
 
-![](catho-app.gif)
+![](catho-app-teste.gif)
 
 O teste ainda está em desenvolvimento. 
 
