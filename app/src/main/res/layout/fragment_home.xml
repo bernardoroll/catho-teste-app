@@ -27,17 +27,20 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <androidx.appcompat.widget.AppCompatImageView
+                <com.mikhaellopez.circularimageview.CircularImageView
                     android:id="@+id/ivToolbarPhoto"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
                     android:layout_marginStart="@dimen/marginNormal"
                     android:layout_marginTop="@dimen/marginSmall"
                     android:layout_marginBottom="@dimen/marginSmall"
+                    app:civ_border_color="@android:color/white"
+                    app:civ_border_width="4dp"
+                    app:civ_circle_color="@color/lightGray"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/shape_photo_placeholder" />
+                    app:setCircularImageDrawable="@{viewModel.photoPath}" />
 
                 <androidx.appcompat.widget.Toolbar
                     android:id="@+id/tbHomeToolbar"
@@ -48,8 +51,9 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@id/ivToolbarPhoto"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:title="Olá, Bernardo"
-                    app:titleTextColor="@android:color/white" />
+                    app:title="@{viewModel.userName}"
+                    app:titleTextColor="@android:color/white"
+                    tools:text="Olá, Bernardo" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </com.google.android.material.appbar.AppBarLayout>
 
@@ -66,15 +70,17 @@
             app:layout_constraintTop_toBottomOf="@id/ablHome"
             tools:text="Sugestões de vagas para você" />
 
-        <include
-            android:id="@+id/jobsCards"
-            layout="@layout/item_suggestion"
-            android:layout_width="0dp"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvJobs"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/marginNormal"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvSuggestionsSectionTitle" />
+            app:layout_constraintTop_toBottomOf="@id/tvSuggestionsSectionTitle"
+            tools:listitem="@layout/item_suggestion" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvRecruiterTipsSectionTitle"
@@ -82,11 +88,11 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/marginNormal"
             android:layout_marginTop="@dimen/marginNormal"
-            android:text="@string/catho_recruiter_tips_section_title"
+            android:text="@{viewModel.recruiterTipsSectionTitle}"
             android:textAppearance="@style/TextAppearance.Catho.Header.White"
             android:textColor="@android:color/white"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/jobsCards"
+            app:layout_constraintTop_toBottomOf="@id/rvJobs"
             tools:text="Sugestões de vagas para você" />
 
         <androidx.appcompat.widget.AppCompatImageView

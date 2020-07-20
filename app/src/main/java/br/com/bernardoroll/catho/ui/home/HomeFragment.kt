@@ -1,5 +1,7 @@
 package br.com.bernardoroll.catho.ui.home
 
+import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,4 +18,8 @@ class HomeFragment : BaseFragment<HomeViewModel>() {
             lifecycleOwner = viewLifecycleOwner
             viewModel = this@HomeFragment.viewModel
         }.root
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+    }
 }
