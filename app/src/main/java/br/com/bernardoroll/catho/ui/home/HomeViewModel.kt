@@ -70,6 +70,9 @@ class HomeViewModel(
     )
     val postTipDislikeColor: LiveData<Int> get() = _postTipDislikeColor
 
+    private val _toastPostActionSuccess = MutableLiveData<String>()
+    val toastPostActionSuccess: LiveData<String> get() = _toastPostActionSuccess
+
     private lateinit var authKey: String
     private lateinit var suggestionKey: String
     private lateinit var tipsKey: String
@@ -127,11 +130,13 @@ class HomeViewModel(
         _postTipLikeColor.value =
             ContextCompat.getColor(app.applicationContext, R.color.colorPrimaryDark)
         _postTipDislikeColor.value = ContextCompat.getColor(app.applicationContext, R.color.gray500)
+        _toastPostActionSuccess.value = model.message
     }
 
     private fun handleDislikeSuccess(model: TipActionModel) {
         _postTipDislikeColor.value = ContextCompat.getColor(app.applicationContext, R.color.red)
         _postTipLikeColor.value = ContextCompat.getColor(app.applicationContext, R.color.gray500)
+        _toastPostActionSuccess.value = model.message
     }
 
     private fun handleApiKeysError(error: Throwable) {
@@ -196,7 +201,6 @@ class HomeViewModel(
         val drawable = app.assets.open(model.photo?.getFileNameFrom() ?: "")
         _photoPath.value = Drawable.createFromStream(drawable, null)
         viewModelScope.launch {
-            model
             suggestionUseCase.run(
                 apiKey = suggestionKey,
                 token = token
