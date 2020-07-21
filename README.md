@@ -5,6 +5,10 @@ Gif com o app funcionando:
 
 ![](catho-app-teste.gif)
 
+Testes unitários realizados:
+
+![](unit-tests.png)
+
 Algumas imagens de exemplo com outras dicas carregadas e com os dois usuários:
 
 ![](guilherme-sample.png)
