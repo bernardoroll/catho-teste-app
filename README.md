@@ -3,7 +3,10 @@ Teste Catho
 
 ![](catho-app-teste.gif)
 
-O teste ainda está em desenvolvimento. 
+![](guilherme-sample.png)
+
+![](isadora-sample.png)
+
 
 **Tópicos principais que ainda não foram desenvolvidos:**
 - Falta a criação de alguns testes unitários
