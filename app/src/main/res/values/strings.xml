@@ -16,6 +16,19 @@
     <string name="catho_company_not_informed">Nome da empresa não informado</string>
     <string name="catho_job_name_not_informed">Nome da empresa não informado</string>
     <string name="catho_locations_not_informed">Nome da empresa não informado</string>
+    <plurals name="catho_number_of_positions">
+        <item quantity="zero">Número de vaga não informado</item>
+        <item quantity="one">1 vaga</item>
+        <item quantity="other">%1$d vagas</item>
+    </plurals>
+    <plurals name="catho_number_of_cities">
+        <item quantity="zero">&#160;- Cidades não informadas</item>
+        <item quantity="other">&#160;- %s</item>
+    </plurals>
+    <plurals name="catho_number_of_plus_other_cities">
+        <item quantity="one">&#160;+ %d cidade</item>
+        <item quantity="other">&#160;+ %d cidades</item>
+    </plurals>
 
     <!-- Recruiter tips item -->
     <string name="catho_check_resume">Checar currículo</string>
