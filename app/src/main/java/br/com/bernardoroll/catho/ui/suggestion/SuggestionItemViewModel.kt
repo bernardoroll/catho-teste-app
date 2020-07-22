@@ -6,7 +6,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import br.com.bernardoroll.catho.R
 import br.com.bernardoroll.catho.domain.model.SuggestionModel
-import java.lang.StringBuilder
 
 class SuggestionItemViewModel(
     private val app: Application,

@@ -4,5 +4,5 @@ import com.google.gson.annotations.SerializedName
 
 data class SalaryResponse(
     @SerializedName("real") val real: String?,
-    @SerializedName("range")val range: String?
+    @SerializedName("range") val range: String?
 )
