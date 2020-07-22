@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 
-abstract class BaseFragment<T: BaseViewModel> : Fragment() {
+abstract class BaseFragment<T : BaseViewModel> : Fragment() {
 
     abstract val viewModel: T
 

@@ -1,7 +1,6 @@
 package br.com.bernardoroll.catho.adapter
 
 import android.content.res.ColorStateList
-import android.graphics.ColorFilter
 import android.graphics.drawable.Drawable
 import android.view.View
 import androidx.appcompat.widget.AppCompatImageView
