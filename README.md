@@ -20,7 +20,7 @@ Algumas imagens de exemplo com outras dicas carregadas e com os dois usuários:
 - Falta a criação de alguns testes unitários
 - Falta o page indicator abaixo das sugestões de vagas
 - O layout da lista de sugestões está ligeiramente diferente das especificações (o próximo card não está aparecendo antes do scroll horizontal ser realizado)
-- Abrir a uma webview com a URL retornada para o botão das dicas
+- Abrir uma webview com a URL retornada para o botão das dicas
 
 **Possíveis Melhorias**
 - Criar uma camada de networking e serpará-la do repositório
